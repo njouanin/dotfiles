@@ -4,18 +4,23 @@
 #
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
-export ZSH=$HOME/.dotfiles
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+source $DOTFILES_ROOT/functions/log
+loglevel=1
 
 # Set OS X defaults
-$ZSH/osx/set-defaults.sh
+info "Set OSX default"
+$DOTFILES_ROOT/osx/set-defaults.sh
 
 # Install homebrew
-$ZSH/homebrew/install.sh 2>&1
+info "Install homebrew"
+$DOTFILES_ROOT/homebrew/install.sh $(expr $loglevel + 1) 2>&1
 
 # Upgrade homebrew
-echo "› brew update"
+info "› brew update"
 brew update
 
 # Install software
-echo "› $ZSH/script/install"
-$ZSH/script/install
+echo "› $ZSH/install"
+DOTFILES_ROOT/install

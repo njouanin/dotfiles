@@ -4,10 +4,13 @@
 
 set -e
 
-cd "$(dirname $0)"/..
+cd "$(dirname $0)"
+DOTFILES_ROOT=$(pwd -P)
+source $DOTFILES_ROOT/functions/log
+loglevel=1
 
 # Run Homebrew through the Brewfile
-echo "› brew bundle"
+info "› brew bundle"
 brew bundle
 
 # find the installers and run them iteratively

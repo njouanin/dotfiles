@@ -4,7 +4,7 @@
 
 cd "$(dirname "$0")"
 DOTFILES_ROOT=$(pwd -P)
-. $DOTFILES_ROOT/functions/log
+source $DOTFILES_ROOT/functions/log
 ZSH=$(type -p zsh)
 loglevel=1
 set -e

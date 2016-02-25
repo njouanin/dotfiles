@@ -1,14 +1,19 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 #
 # Homebrew
 #
 # This installs some of the common dependencies needed (or at least desired)
 # using Homebrew.
 
+cd "$(dirname "$0")/.."
+DOTFILES_ROOT=$(pwd -P)
+source $DOTFILES_ROOT/functions/log
+loglevel=$1
+
 # Check for Homebrew
-if test ! $(which brew)
+if ! [ -z "$(which brew)" ]
 then
-  echo "  Installing Homebrew for you."
+  info "Installing Homebrew for you."
 
   # Install the correct homebrew for each OS type
   if test "$(uname)" = "Darwin"
@@ -18,7 +23,8 @@ then
   then
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
   fi
-
+else
+  fail "Homebrew already installed."
 fi
 
 exit 0

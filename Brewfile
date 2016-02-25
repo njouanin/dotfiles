@@ -17,6 +17,8 @@ brew 'roundup'
 brew 'unrar'
 brew 'wget'
 brew 'youtube-dl'
+brew 'tree'
+brew 'htop'
 
 cask 'adium'
 cask 'firefox'
